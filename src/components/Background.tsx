@@ -8,10 +8,25 @@ const GradientBackground: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Slow colour shift over ~30 seconds
-  const t = (frame / fps) % 30;
-  const hue1 = interpolate(t, [0, 30], [220, 260]);
-  const hue2 = interpolate(t, [0, 30], [260, 300]);
+  // Slow color shift and movement over 20 seconds loop
+  const duration = 20 * fps;
+  const loopFrame = frame % duration;
+  const t = loopFrame / fps;
+
+  // Animate hues to shift back and forth (Cool tech feel: Blue, Cyan, Emerald)
+  const hue1 = interpolate(t, [0, 10, 20], [200, 220, 200]);
+  const hue2 = interpolate(t, [0, 10, 20], [170, 190, 170]);
+  const hue3 = interpolate(t, [0, 10, 20], [140, 160, 140]);
+
+  // Animate positions for subtle drifting
+  const posX1 = interpolate(t, [0, 10, 20], [20, 80, 20]);
+  const posY1 = interpolate(t, [0, 10, 20], [30, 70, 30]);
+
+  const posX2 = interpolate(t, [0, 10, 20], [80, 20, 80]);
+  const posY2 = interpolate(t, [0, 10, 20], [70, 30, 70]);
+
+  const posX3 = interpolate(t, [0, 10, 20], [50, 50, 50]);
+  const posY3 = interpolate(t, [0, 10, 20], [10, 90, 10]);
 
   return (
     <div
@@ -19,9 +34,10 @@ const GradientBackground: React.FC = () => {
         position: "absolute",
         inset: 0,
         background: `
-          radial-gradient(ellipse at 30% 50%, hsl(${hue1},30%,8%) 0%, transparent 60%),
-          radial-gradient(ellipse at 70% 50%, hsl(${hue2},25%,6%) 0%, transparent 60%),
-          linear-gradient(160deg, hsl(230,20%,5%) 0%, hsl(250,15%,3%) 100%)
+          radial-gradient(circle at ${posX1}% ${posY1}%, hsl(${hue1}, 50%, 15%) 0%, transparent 60%),
+          radial-gradient(circle at ${posX2}% ${posY2}%, hsl(${hue2}, 40%, 12%) 0%, transparent 70%),
+          radial-gradient(circle at ${posX3}% ${posY3}%, hsl(${hue3}, 50%, 10%) 0%, transparent 80%),
+          linear-gradient(160deg, hsl(210, 30%, 5%) 0%, hsl(230, 30%, 3%) 100%)
         `,
       }}
     />
@@ -42,10 +58,10 @@ export const Background: React.FC<BackgroundProps> = ({ config }) => {
 
   const overlayStyle: React.CSSProperties = overlayOpacity > 0
     ? {
-        position: "absolute",
-        inset: 0,
-        background: `rgba(0,0,0,${overlayOpacity})`,
-      }
+      position: "absolute",
+      inset: 0,
+      background: `rgba(0,0,0,${overlayOpacity})`,
+    }
     : {};
 
   if (config.type === "gradient" || !config.src) {
