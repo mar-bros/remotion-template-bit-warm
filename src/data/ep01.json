@@ -12,7 +12,10 @@
     "overlay": 0
   },
   "bgMusic": [],
-  "narration": null,
+  "narration": {
+    "src": "audio_000.wav",
+    "volume": 1
+  },
   "subtitleStyle": {
     "animation": "fade",
     "zhFontSize": 56,
@@ -21,18 +24,52 @@
   },
   "subtitles": [
     {
-      "id": 1,
-      "zh": "比特币是什么？",
-      "en": "What is Bitcoin?",
-      "startSec": 0,
-      "endSec": 1.5
+      "en": "My Father's Silence",
+      "zh": "父亲的背影",
+      "startSec": 0.0,
+      "id": 0.0,
+      "endSec": 0.96,
+      "duration": 0.0
     },
     {
-      "id": 2,
-      "zh": "它是一种去中心化的数字货币",
-      "en": "It is a decentralized digital currency",
-      "startSec": 2,
-      "endSec": 4
+      "en": "He never speaks of love.",
+      "zh": "他从不谈论爱",
+      "startSec": 1.52,
+      "id": 1.52,
+      "endSec": 2.8,
+      "duration": 0.3999999999999999
+    },
+    {
+      "en": "Yet he traded his prime for the simple needs of home.",
+      "zh": "却把最好的年华都换成了柴米油盐",
+      "startSec": 3.12,
+      "id": 3.12,
+      "endSec": 5.68,
+      "duration": 0.3199999999999994
+    },
+    {
+      "en": "His back was once the entirety of my sky.",
+      "zh": "他的脊背曾是我的整片天空",
+      "startSec": 6.32,
+      "id": 6.32,
+      "endSec": 8.8,
+      "duration": 0.2400000000000002
+    },
+    {
+      "en": "Now it’s just a curve weathered by the years.",
+      "zh": "如今却缩成了一道被岁月压弯的弧线。",
+      "startSec": 9.52,
+      "id": 9.52,
+      "endSec": 12.32,
+      "duration": 0.3200000000000003
+    },
+    {
+      "en": "May we grow faster than the pace of his aging.",
+      "zh": "我们长大的速度，请一定要快过他老去的速度",
+      "startSec": 13.04,
+      "id": 13.04,
+      "endSec": 16.72,
+      "duration": 0.3200000000000003
     }
   ],
   "branding": {
@@ -44,12 +81,12 @@
     "duration": 2,
     "items": [
       {
-        "label": "制作",
-        "value": "Bit Warm Channel"
+        "label": "Made by",
+        "value": "Bit Warm & Marshvin ™"
       },
       {
-        "label": "音乐",
-        "value": "（待填写）"
+        "label": "Voice",
+        "value": "Qwen3-TTS"
       }
     ]
   }

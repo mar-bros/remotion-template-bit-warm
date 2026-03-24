@@ -11,8 +11,17 @@
     "src": null,
     "overlay": 0
   },
-  "bgMusic": [],
-  "narration": null,
+  "bgMusic": [
+    {
+      "src": "music/ambient.mp3",
+      "volume": 0.15,
+      "loop": true
+    }
+  ],
+  "narration": {
+    "src": "audio/full_narration.mp3",
+    "volume": 1.0
+  },
   "subtitleStyle": {
     "animation": "fade",
     "zhFontSize": 56,

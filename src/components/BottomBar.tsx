@@ -60,7 +60,7 @@ export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
               letterSpacing: "0.03em"
             }}
           >
-            Mar Bro ™
+            Marshvin ™
           </span>
         )}
       </div>

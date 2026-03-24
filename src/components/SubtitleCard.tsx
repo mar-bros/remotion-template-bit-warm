@@ -34,8 +34,8 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
   const translateY =
     style.animation === "slide"
       ? interpolate(frame, [0, fadeInFrames], [20, 0], {
-          extrapolateRight: "clamp",
-        })
+        extrapolateRight: "clamp",
+      })
       : 0;
 
   return (
