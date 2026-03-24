@@ -25,14 +25,14 @@ export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
         bottom: 0,
         left: 0,
         right: 0,
-        height: 80,
+        height: 120, // Increased height for larger logo
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         padding: "0 48px",
         opacity,
         background:
-          "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 100%)",
+          "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
       }}
     >
       {/* Logo */}
@@ -40,21 +40,27 @@ export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
         {branding.logo ? (
           <Img
             src={staticFile(branding.logo)}
-            style={{ height: 36, objectFit: "contain" }}
+            style={{
+              height: 128,
+              width: 128,
+              objectFit: "cover",
+              borderRadius: 36, // 圆角
+              boxShadow: "0 8px 32px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.2)", // 质感阴影与高光
+              border: "1px solid rgba(255,255,255,0.15)", // 边缘纹理
+              background: "#111" // 防止透明 PNG 出问题
+            }}
           />
         ) : (
           // Text fallback when no logo file
           <span
             style={{
               fontSize: 22,
-              fontWeight: 700,
-              color: "rgba(255,255,255,0.9)",
-              letterSpacing: "0.08em",
+              color: "rgba(255,255,255,0.5)",
               fontFamily: "sans-serif",
-              textTransform: "uppercase",
+              letterSpacing: "0.03em"
             }}
           >
-            Bit Warm
+            Mar Bro ™
           </span>
         )}
       </div>
@@ -63,7 +69,7 @@ export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
       {branding.copyright && (
         <span
           style={{
-            fontSize: 18,
+            fontSize: 22,
             color: "rgba(255,255,255,0.5)",
             fontFamily: "sans-serif",
             letterSpacing: "0.03em",

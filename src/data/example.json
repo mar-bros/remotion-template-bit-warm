@@ -24,24 +24,44 @@
       "id": 1,
       "zh": "比特币是什么？",
       "en": "What is Bitcoin?",
+      "audio": null,
       "startSec": 0,
-      "endSec": 1.5
+      "endSec": 3.5,
+      "gapAfter": 0.5,
+      "background": null
     },
     {
       "id": 2,
       "zh": "它是一种去中心化的数字货币",
       "en": "It is a decentralized digital currency",
-      "startSec": 2,
-      "endSec": 4
+      "audio": null,
+      "startSec": 4,
+      "endSec": 8,
+      "gapAfter": 0.5,
+      "background": null
+    },
+    {
+      "id": 3,
+      "zh": "任何人都可以参与，无需许可",
+      "en": "Anyone can participate — permission-less",
+      "audio": null,
+      "startSec": 8.5,
+      "endSec": 13,
+      "gapAfter": 1,
+      "background": {
+        "type": "gradient",
+        "src": null,
+        "overlay": 0
+      }
     }
   ],
   "branding": {
     "show": true,
-    "logo": "",
-    "copyright": "2025 © Bit Warm"
+    "logo": null,
+    "copyright": "© 2025 Bit Warm"
   },
   "endCredits": {
-    "duration": 2,
+    "duration": 5,
     "items": [
       {
         "label": "制作",
