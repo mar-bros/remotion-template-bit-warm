@@ -1,5 +1,5 @@
 import "./index.css";
-import { Composition } from "remotion";
+import { getInputProps, Composition } from "remotion";
 import type { CalculateMetadataFunction } from "remotion";
 import { BitWarnVideo } from "./compositions/BitWarnVideo";
 import { BitWarnConfigSchema, type BitWarnConfig } from "./types/config";
@@ -11,7 +11,15 @@ type BitWarnVideoProps = BitWarnConfig & { audioDurations: Record<string, number
 const calculateMetadata: CalculateMetadataFunction<BitWarnVideoProps> = async ({
   props,
 }) => {
-  const config = BitWarnConfigSchema.parse(props);
+
+  // 读取通过 --props 传入的对象，覆盖默认参数
+  const inputProps = getInputProps();
+  // 覆盖默认参数
+  const config = BitWarnConfigSchema.parse({ ...props, ...inputProps });
+
+  console.info("inputProps", JSON.stringify(inputProps))
+  console.info("config", JSON.stringify(config))
+
 
   // Collect all audio srcs that need duration lookup
   const audioSrcs = config.subtitles
