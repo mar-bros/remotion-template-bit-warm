@@ -13,7 +13,7 @@
   },
   "bgMusic": [],
   "narration": {
-    "src": "audio_000.wav",
+    "src": "aaaa.wav",
     "volume": 1
   },
   "subtitleStyle": {
@@ -24,52 +24,70 @@
   },
   "subtitles": [
     {
-      "en": "My Father's Silence",
-      "zh": "父亲的背影",
-      "startSec": 0.0,
-      "id": 0.0,
-      "endSec": 0.96,
-      "duration": 0.0
+      "id": 0,
+      "en": "Solitary Lights",
+      "zh": "孤独的灯火",
+      "startSec": 0,
+      "endSec": 1.28,
+      "duration": 1.28,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     },
     {
-      "en": "He never speaks of love.",
-      "zh": "他从不谈论爱",
-      "startSec": 1.52,
-      "id": 1.52,
-      "endSec": 2.8,
-      "duration": 0.3999999999999999
+      "id": 1,
+      "en": "Countless lights flicker, yet none wait for me.",
+      "zh": "万家灯火闪烁，却没一盏在等我。",
+      "startSec": 2.72,
+      "endSec": 8.72,
+      "duration": 6,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     },
     {
-      "en": "Yet he traded his prime for the simple needs of home.",
-      "zh": "却把最好的年华都换成了柴米油盐",
-      "startSec": 3.12,
-      "id": 3.12,
-      "endSec": 5.68,
-      "duration": 0.3199999999999994
+      "id": 2,
+      "en": "The city is crowded, but the heart feels like a wilderness.",
+      "zh": "这座城市很挤，心却空得像荒野。",
+      "startSec": 8.72,
+      "endSec": 14.64,
+      "duration": 5.92,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     },
     {
-      "en": "His back was once the entirety of my sky.",
-      "zh": "他的脊背曾是我的整片天空",
-      "startSec": 6.32,
-      "id": 6.32,
-      "endSec": 8.8,
-      "duration": 0.2400000000000002
+      "id": 3,
+      "en": "We seek warmth through screens, only to drift apart in reality.",
+      "zh": "我们隔着屏幕取暖，却在现实里走散。",
+      "startSec": 14.64,
+      "endSec": 20.32,
+      "duration": 5.68,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     },
     {
-      "en": "Now it’s just a curve weathered by the years.",
-      "zh": "如今却缩成了一道被岁月压弯的弧线。",
-      "startSec": 9.52,
-      "id": 9.52,
-      "endSec": 12.32,
-      "duration": 0.3200000000000003
+      "id": 4,
+      "en": "Loneliness isn't being alone; it's being unknown.",
+      "zh": "孤独不是没人在身边，而是无人入心间。",
+      "startSec": 20.32,
+      "endSec": 27.68,
+      "duration": 7.359999999999999,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     },
     {
-      "en": "May we grow faster than the pace of his aging.",
-      "zh": "我们长大的速度，请一定要快过他老去的速度",
-      "startSec": 13.04,
-      "id": 13.04,
-      "endSec": 16.72,
-      "duration": 0.3200000000000003
+      "id": 5,
+      "en": "Goodnight to the soul still trying to shine.",
+      "zh": "晚安，给那个还在努力发光的自己。",
+      "startSec": 27.68,
+      "endSec": 28.88,
+      "duration": 1.1999999999999993,
+      "gapAfter": 0,
+      "audio": null,
+      "background": null
     }
   ],
   "branding": {
