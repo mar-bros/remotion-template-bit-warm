@@ -76,7 +76,7 @@ export const Background: React.FC<BackgroundProps> = ({ config }) => {
     return (
       <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
         <Img
-          src={staticFile(config.src)}
+          src={config.src.startsWith('http') ? config.src : staticFile(config.src)}
           style={{
             width,
             height,
@@ -93,7 +93,7 @@ export const Background: React.FC<BackgroundProps> = ({ config }) => {
     return (
       <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
         <Video
-          src={staticFile(config.src)}
+          src={config.src.startsWith('http') ? config.src : staticFile(config.src)}
           style={{ width, height, objectFit: "cover" }}
           loop
         />

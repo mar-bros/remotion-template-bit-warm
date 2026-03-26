@@ -45,7 +45,7 @@ export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
       {bgMusic.map((track, i) => (
         <Audio
           key={`bgmusic-${i}`}
-          src={staticFile(track.src)}
+          src={track.src.startsWith('http') ? track.src : staticFile(track.src)}
           volume={track.volume}
           loop={track.loop}
         />
@@ -54,7 +54,7 @@ export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
       {/* ── Global narration (plays from start throughout) ───────────────── */}
       {narration && (
         <Audio
-          src={staticFile(narration.src)}
+          src={narration.src.startsWith('http') ? narration.src : staticFile(narration.src)}
           volume={narration.volume}
         />
       )}
@@ -77,7 +77,7 @@ export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
 
             {/* Per-subtitle TTS audio */}
             {subtitle.audio && (
-              <Audio src={staticFile(subtitle.audio)} volume={1} />
+              <Audio src={subtitle.audio.startsWith('http') ? subtitle.audio : staticFile(subtitle.audio)} volume={1} />
             )}
 
             {/* Subtitle card */}
