@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "meta": {
+    "fps": 30,
+    "width": 1920,
+    "height": 1080
+  },
+  "background": {
+    "type": "gradient",
+    "src": null,
+    "overlay": 0
+  },
+  "bgMusic": [],
+  "narration": {
+    "src": "tts_voice.wav",
+    "volume": 1.0,
+    "loop": false
+  },
+  "subtitleStyle": {
+    "animation": "fade",
+    "zhFontSize": 56,
+    "enFontSize": 32,
+    "color": "#FFFFFF"
+  },
+  "subtitles": [
+    {
+      "id": 0,
+      "en": "Fleeting Eternity",
+      "zh": "瞬息的永恒",
+      "startSec": 0.08,
+      "endSec": 1.36,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    },
+    {
+      "id": 1,
+      "en": "Sunset rests on your hair—the universe's gentle touch.",
+      "zh": "晚霞落在发梢，那是宇宙给你的温柔。",
+      "startSec": 2.08,
+      "endSec": 6.72,
+      "duration": 4.64,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    },
+    {
+      "id": 2,
+      "en": "Stop rushing; feel the path, feel the breath of now.",
+      "zh": "不必赶路，去感受路，感受当下的呼吸。",
+      "startSec": 6.72,
+      "endSec": 10,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    },
+    {
+      "id": 3,
+      "en": "In a noisy world, silence is the ultimate luxury.",
+      "zh": "在这个喧嚣的世界，安静是最昂贵的奢侈品。",
+      "startSec": 11,
+      "endSec": 15,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    },
+    {
+      "id": 4,
+      "en": "Every fleeting moment of love is a commentary on eternity.",
+      "zh": "每一个瞬间的深爱，都是对永恒的注解。",
+      "startSec": 15,
+      "endSec": 19,
+      "duration": 5.280000000000001,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    },
+    {
+      "id": 5,
+      "en": "The world is vast, but never lose that tiny version of yourself.",
+      "zh": "世界很大，但请别弄丢了那个小小的自己。",
+      "startSec": 19,
+      "endSec": 23,
+      "duration": 1.1999999999999993,
+      "gapAfter": 0.0,
+      "audio": null,
+      "background": null
+    }
+  ],
+  "branding": {
+    "show": true,
+    "logo": null,
+    "copyright": "2026 © Bit Warm"
+  },
+  "endCredits": {
+    "duration": 2,
+    "items": [
+      {
+        "label": "制作",
+        "value": "Mar Bros Family"
+      },
+      {
+        "label": "文案",
+        "value": "AI Writer"
+      },
+      {
+        "label": "旁白",
+        "value": "Qwen3 TTS"
+      },
+      {
+        "label": "字幕",
+        "value": "Qwen3 Forced Aligner"
+      },
+      {
+        "label": "视频",
+        "value": "Remotion"
+      }
+    ]
+  }
+}

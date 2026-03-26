@@ -1,6 +1,12 @@
-# Remotion video
+# remotion-template-bit-warm
 
-Welcome to your Remotion project!
+```bash
+# 查看效果
+npm install && npm run dev
+
+# 渲染视频
+npx remotion render
+```
 
 
 
