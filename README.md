@@ -1,14 +1,18 @@
 # remotion-template-bit-warm
 
 ```bash
-# 查看效果
+# 本地运行
 npm install && npm run dev
 
 # 渲染视频
 npx remotion render
 ```
 
+# 效果
 
+<video src="public/BitWarnVideo.mp4" width="100%" controls>
+  您的浏览器不支持视频播放。
+</video>
 
 ## Docs
 
