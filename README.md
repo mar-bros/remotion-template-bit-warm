@@ -10,7 +10,7 @@ npx remotion render
 
 # 效果
 
-<video src="https://mar-bros.github.io/remotion-template-bit-warm/public/BitWarnVideo.mp4" width="100%" controls>
+<video src="https://github.com/user-attachments/assets/9064c11f-b523-4033-8eaf-0a1d78b0b25d" width="100%" controls>
   您的浏览器不支持视频播放。
 </video>
 
