@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "remotion studio",
-    "build": "remotion bundle",
+    "build": "remotion bundle && mv docs/public/CNAME docs/",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },
