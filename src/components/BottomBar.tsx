@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, interpolate, Img, staticFile } from "remotion";
+import { Img, staticFile } from "remotion";
 import type { BrandingSchema } from "../types/config";
 import { z } from "zod";
 
@@ -10,13 +10,8 @@ interface BottomBarProps {
 }
 
 export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
-  const frame = useCurrentFrame();
 
   if (!branding.show) return null;
-
-  const opacity = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
 
   return (
     <div
@@ -30,7 +25,6 @@ export const BottomBar: React.FC<BottomBarProps> = ({ branding }) => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "0 48px",
-        opacity,
         background:
           "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
       }}
