@@ -1627,9 +1627,7 @@ const { fontFamily: enFont } = Inter_loadFont("normal", {
 const SubtitleCard = ({ zh, en, style }) => {
   const frame = (0,esm.useCurrentFrame)();
   const fadeInFrames = 8;
-  const opacity = (0,esm.interpolate)(frame, [0, fadeInFrames], [0, 1], {
-    extrapolateRight: "clamp"
-  });
+  const opacity = style.animation === "none" ? 1 : (0,esm.interpolate)(frame, [0, fadeInFrames], [0, 1], { extrapolateRight: "clamp" });
   const translateY = style.animation === "slide" ? (0,esm.interpolate)(frame, [0, fadeInFrames], [20, 0], {
     extrapolateRight: "clamp"
   }) : 0;
@@ -1655,16 +1653,17 @@ const SubtitleCard = ({ zh, en, style }) => {
             style: {
               fontFamily: zhFont,
               fontSize: style.zhFontSize,
-              fontWeight: 700,
+              fontWeight: 600,
               color: style.color,
               margin: 0,
-              lineHeight: 1.3,
+              lineHeight: 1.5,
               textAlign: "center",
               textShadow: "0 2px 24px rgba(0,0,0,0.8)",
               maxWidth: "80%",
-              letterSpacing: "0.04em"
+              letterSpacing: "0.04em",
+              whiteSpace: "pre-wrap"
             },
-            children: zh
+            children: zh.replace(/，/g, "\n").replace(/。/g, "")
           }
         ),
         /* @__PURE__ */ (0,jsx_runtime.jsx)(
@@ -1673,16 +1672,17 @@ const SubtitleCard = ({ zh, en, style }) => {
             style: {
               fontFamily: enFont,
               fontSize: style.enFontSize,
-              fontWeight: 400,
+              fontWeight: 600,
               color: `${style.color}cc`,
-              margin: "12px 0 0",
+              margin: "96px 0 0",
               lineHeight: 1.5,
               textAlign: "center",
-              textShadow: "0 2px 16px rgba(0,0,0,0.7)",
+              textShadow: "0 2px 16px rgba(0,0,0,0.8)",
               maxWidth: "75%",
-              letterSpacing: "0.02em"
+              letterSpacing: "0.02em",
+              whiteSpace: "pre-wrap"
             },
-            children: en
+            children: en.replace(/[;,]/g, "\n").replace(/\./g, "")
           }
         )
       ]
@@ -1695,11 +1695,7 @@ const SubtitleCard = ({ zh, en, style }) => {
 
 
 const BottomBar = ({ branding }) => {
-  const frame = (0,esm.useCurrentFrame)();
   if (!branding.show) return null;
-  const opacity = (0,esm.interpolate)(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp"
-  });
   return /* @__PURE__ */ (0,jsx_runtime.jsxs)(
     "div",
     {
@@ -1714,7 +1710,6 @@ const BottomBar = ({ branding }) => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "0 48px",
-        opacity,
         background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)"
       },
       children: [
@@ -1819,9 +1814,11 @@ const EndCredits = ({ config, startFrame }) => {
               {
                 style: {
                   display: "flex",
+                  flexDirection: "column",
                   gap: 16,
                   opacity: itemOpacity,
-                  transform: `translateY(${itemY}px)`
+                  transform: `translateY(${itemY}px)`,
+                  marginTop: "26px"
                 },
                 children: [
                   /* @__PURE__ */ (0,jsx_runtime.jsx)(
@@ -1833,7 +1830,7 @@ const EndCredits = ({ config, startFrame }) => {
                         fontFamily: "sans-serif",
                         fontWeight: 400,
                         minWidth: 120,
-                        textAlign: "right"
+                        textAlign: "center"
                       },
                       children: item.label
                     }
@@ -1845,7 +1842,8 @@ const EndCredits = ({ config, startFrame }) => {
                         fontSize: 22,
                         color: "rgba(255,255,255,0.85)",
                         fontFamily: "sans-serif",
-                        fontWeight: 500
+                        fontWeight: 500,
+                        textAlign: "center"
                       },
                       children: item.value
                     }
@@ -1914,7 +1912,8 @@ function getTotalFrames(resolvedSubtitles, endCreditsDuration, fps) {
 
 
 const BitWarnVideo = (props) => {
-  const { fps } = (0,esm.useVideoConfig)();
+  const { fps, durationInFrames } = (0,esm.useVideoConfig)();
+  const frame = (0,esm.useCurrentFrame)();
   const {
     background,
     bgMusic,
@@ -1934,15 +1933,27 @@ const BitWarnVideo = (props) => {
   const creditsStartFrame = totalFrames - Math.round(endCredits.duration * fps);
   return /* @__PURE__ */ (0,jsx_runtime.jsxs)("div", { style: { position: "relative", width: "100%", height: "100%", overflow: "hidden" }, children: [
     /* @__PURE__ */ (0,jsx_runtime.jsx)(Background, { config: background }),
-    bgMusic.map((track, i) => /* @__PURE__ */ (0,jsx_runtime.jsx)(
-      esm.Audio,
-      {
-        src: track.src.startsWith("http") ? track.src : (0,esm.staticFile)(track.src),
-        volume: track.volume,
-        loop: track.loop
-      },
-      `bgmusic-${i}`
-    )),
+    bgMusic.map((track, i) => {
+      const fadeOutFrames = Math.round(track.fadeOutDuration * fps);
+      const volume = (0,esm.interpolate)(
+        frame,
+        [durationInFrames - fadeOutFrames, durationInFrames],
+        [track.volume, 0],
+        {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp"
+        }
+      );
+      return /* @__PURE__ */ (0,jsx_runtime.jsx)(
+        esm.Audio,
+        {
+          src: track.src.startsWith("http") ? track.src : (0,esm.staticFile)(track.src),
+          volume,
+          loop: track.loop
+        },
+        `bgmusic-${i}`
+      );
+    }),
     narration && /* @__PURE__ */ (0,jsx_runtime.jsx)(
       esm.Audio,
       {
@@ -1992,16 +2003,17 @@ const BackgroundConfigSchema = external.object({
 const BgMusicSchema = external.object({
   src: external.string(),
   volume: external.number().min(0).max(1).default(0.15),
-  loop: external.boolean().default(true)
+  loop: external.boolean().default(true),
+  fadeOutDuration: external.number().default(2)
 });
 const NarrationSchema = external.object({
   src: external.string(),
   volume: external.number().min(0).max(1).default(1)
 });
 const SubtitleStyleSchema = external.object({
-  animation: external["enum"](["fade", "slide"]).default("fade"),
+  animation: external["enum"](["fade", "slide", "none"]).default("fade"),
   zhFontSize: external.number().default(56),
-  enFontSize: external.number().default(32),
+  enFontSize: external.number().default(42),
   color: external.string().default("#ffffff")
 });
 const SubtitleSchema = external.object({
@@ -2051,7 +2063,7 @@ const BitWarnConfigSchema = external.object({
 });
 
 ;// ./src/data/ep01.json
-const ep01_namespaceObject = /*#__PURE__*/JSON.parse('{"version":"1.0","meta":{"fps":30,"width":1920,"height":1080},"background":{"type":"gradient","src":null,"overlay":0},"bgMusic":[],"narration":{"src":"tts_voice.wav","volume":1,"loop":false},"subtitleStyle":{"animation":"fade","zhFontSize":56,"enFontSize":32,"color":"#FFFFFF"},"subtitles":[{"id":0,"en":"Fleeting Eternity","zh":"瞬息的永恒","startSec":0.08,"endSec":1.36,"gapAfter":0,"audio":null,"background":null},{"id":1,"en":"Sunset rests on your hair—the universe\'s gentle touch.","zh":"晚霞落在发梢，那是宇宙给你的温柔。","startSec":2.08,"endSec":6.72,"duration":4.64,"gapAfter":0,"audio":null,"background":null},{"id":2,"en":"Stop rushing; feel the path, feel the breath of now.","zh":"不必赶路，去感受路，感受当下的呼吸。","startSec":6.72,"endSec":10,"gapAfter":0,"audio":null,"background":null},{"id":3,"en":"In a noisy world, silence is the ultimate luxury.","zh":"在这个喧嚣的世界，安静是最昂贵的奢侈品。","startSec":11,"endSec":15,"gapAfter":0,"audio":null,"background":null},{"id":4,"en":"Every fleeting moment of love is a commentary on eternity.","zh":"每一个瞬间的深爱，都是对永恒的注解。","startSec":15,"endSec":19,"duration":5.280000000000001,"gapAfter":0,"audio":null,"background":null},{"id":5,"en":"The world is vast, but never lose that tiny version of yourself.","zh":"世界很大，但请别弄丢了那个小小的自己。","startSec":19,"endSec":23,"duration":1.1999999999999993,"gapAfter":0,"audio":null,"background":null}],"branding":{"show":true,"logo":null,"copyright":"2026 © Bit Warm"},"endCredits":{"duration":2,"items":[{"label":"制作","value":"Mar Bros Family"},{"label":"文案","value":"AI Writer"},{"label":"旁白","value":"Qwen3 TTS"},{"label":"字幕","value":"Qwen3 Forced Aligner"},{"label":"视频","value":"Remotion"}]}}');
+const ep01_namespaceObject = /*#__PURE__*/JSON.parse('{"version":"1.0","meta":{"fps":30,"width":1080,"height":1920},"background":{"type":"gradient","src":null,"overlay":0},"bgMusic":[{"src":"paulyudin-sad-sad-music-485935.mp3","volume":0.5,"loop":true}],"narration":{"src":"tts_voice.wav","volume":1,"loop":false},"subtitleStyle":{"animation":"fade","zhFontSize":56,"enFontSize":42,"color":"#FFFFFF"},"subtitles":[{"id":0,"en":"Fleeting Eternity","zh":"瞬息的永恒","startSec":0,"endSec":1.36,"gapAfter":0,"audio":null,"background":null,"style":{"animation":"none","zhFontSize":56,"enFontSize":42}},{"id":1,"en":"Sunset rests on your hair—the universe\'s gentle touch.","zh":"晚霞落在发梢，那是宇宙给你的温柔。","startSec":2.08,"endSec":6.72,"duration":4.64,"gapAfter":0,"audio":null,"background":null},{"id":2,"en":"Stop rushing; feel the path, feel the breath of now.","zh":"不必赶路，去感受路，感受当下的呼吸。","startSec":6.72,"endSec":10,"gapAfter":0,"audio":null,"background":null},{"id":3,"en":"In a noisy world, silence is the ultimate luxury.","zh":"在这个喧嚣的世界，安静是最昂贵的奢侈品。","startSec":11,"endSec":15,"gapAfter":0,"audio":null,"background":null},{"id":4,"en":"Every fleeting moment of love is a commentary on eternity.","zh":"每一个瞬间的深爱，都是对永恒的注解。","startSec":15,"endSec":19,"duration":5.280000000000001,"gapAfter":0,"audio":null,"background":null},{"id":5,"en":"The world is vast, but never lose that tiny version of yourself.","zh":"世界很大，但请别弄丢了那个小小的自己。","startSec":19,"endSec":23,"duration":1.1999999999999993,"gapAfter":0,"audio":null,"background":null}],"branding":{"show":true,"logo":null,"copyright":"2026 © Bit Warm"},"endCredits":{"duration":3,"items":[{"label":"制作","value":"Mar Bros Family"},{"label":"文案","value":"AI Writer"},{"label":"旁白","value":"Qwen3 TTS"},{"label":"字幕","value":"Qwen3 Forced Aligner"},{"label":"视频","value":"Remotion"}]}}');
 ;// ./src/Root.tsx
 
 
