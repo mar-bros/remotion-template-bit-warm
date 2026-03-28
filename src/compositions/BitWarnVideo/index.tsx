@@ -1,5 +1,5 @@
 import React from "react";
-import { Audio, Sequence, useVideoConfig, staticFile } from "remotion";
+import { Audio, Sequence, useVideoConfig, staticFile, useCurrentFrame, interpolate } from "remotion";
 import type { BitWarnConfig, ResolvedSubtitle } from "../../types/config";
 import { Background } from "../../components/Background";
 import { SubtitleCard } from "../../components/SubtitleCard";
@@ -13,7 +13,8 @@ interface BitWarnVideoProps extends BitWarnConfig {
 }
 
 export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
+  const frame = useCurrentFrame();
 
   const {
     background,
@@ -42,14 +43,27 @@ export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
       <Background config={background} />
 
       {/* ── Background music tracks ─────────────────────────────────────── */}
-      {bgMusic.map((track, i) => (
-        <Audio
-          key={`bgmusic-${i}`}
-          src={track.src.startsWith('http') ? track.src : staticFile(track.src)}
-          volume={track.volume}
-          loop={track.loop}
-        />
-      ))}
+      {bgMusic.map((track, i) => {
+        const fadeOutFrames = Math.round(track.fadeOutDuration * fps);
+        const volume = interpolate(
+          frame,
+          [durationInFrames - fadeOutFrames, durationInFrames],
+          [track.volume, 0],
+          {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }
+        );
+
+        return (
+          <Audio
+            key={`bgmusic-${i}`}
+            src={track.src.startsWith('http') ? track.src : staticFile(track.src)}
+            volume={volume}
+            loop={track.loop}
+          />
+        );
+      })}
 
       {/* ── Global narration (plays from start throughout) ───────────────── */}
       {narration && (

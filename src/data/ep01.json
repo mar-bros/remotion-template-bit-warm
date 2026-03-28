@@ -10,7 +10,13 @@
     "src": null,
     "overlay": 0
   },
-  "bgMusic": [],
+  "bgMusic": [
+    {
+      "src": "paulyudin-sad-sad-music-485935.mp3",
+      "volume": 0.5,
+      "loop": true
+    }
+  ],
   "narration": {
     "src": "tts_voice.wav",
     "volume": 1.0,

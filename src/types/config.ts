@@ -16,6 +16,7 @@ export const BgMusicSchema = z.object({
   src: z.string(),
   volume: z.number().min(0).max(1).default(0.15),
   loop: z.boolean().default(true),
+  fadeOutDuration: z.number().default(2),
 });
 
 export const NarrationSchema = z.object({
