@@ -26,9 +26,7 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
 
   // ── Fade animation (in only — let Sequence handle cut-off) ──────────────────
   const fadeInFrames = 8;
-  const opacity = interpolate(frame, [0, fadeInFrames], [0, 1], {
-    extrapolateRight: "clamp",
-  });
+  const opacity = style.animation === "none" ? 1 : interpolate(frame, [0, fadeInFrames], [0, 1], { extrapolateRight: "clamp" });
 
   // ── Slide animation (optional) ───────────────────────────────────────────────
   const translateY =
@@ -58,17 +56,18 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
         style={{
           fontFamily: zhFont,
           fontSize: style.zhFontSize,
-          fontWeight: 700,
+          fontWeight: 600,
           color: style.color,
           margin: 0,
-          lineHeight: 1.3,
+          lineHeight: 1.5,
           textAlign: "center",
           textShadow: "0 2px 24px rgba(0,0,0,0.8)",
           maxWidth: "80%",
           letterSpacing: "0.04em",
+          whiteSpace: "pre-wrap"
         }}
       >
-        {zh}
+        {zh.replace(/，/g, "\n").replace(/。/g, "")}
       </p>
 
       {/* English line */}
@@ -76,17 +75,18 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
         style={{
           fontFamily: enFont,
           fontSize: style.enFontSize,
-          fontWeight: 400,
+          fontWeight: 600,
           color: `${style.color}cc`,
-          margin: "12px 0 0",
+          margin: "96px 0 0",
           lineHeight: 1.5,
           textAlign: "center",
-          textShadow: "0 2px 16px rgba(0,0,0,0.7)",
+          textShadow: "0 2px 16px rgba(0,0,0,0.8)",
           maxWidth: "75%",
           letterSpacing: "0.02em",
+          whiteSpace: "pre-wrap"
         }}
       >
-        {en}
+        {en.replace(/[;,]/g, "\n").replace(/\./g, "")}
       </p>
     </div>
   );

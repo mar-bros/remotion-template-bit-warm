@@ -2,8 +2,8 @@
   "version": "1.0",
   "meta": {
     "fps": 30,
-    "width": 1920,
-    "height": 1080
+    "width": 1080,
+    "height": 1920
   },
   "background": {
     "type": "gradient",
@@ -19,7 +19,7 @@
   "subtitleStyle": {
     "animation": "fade",
     "zhFontSize": 56,
-    "enFontSize": 32,
+    "enFontSize": 42,
     "color": "#FFFFFF"
   },
   "subtitles": [
@@ -27,11 +27,16 @@
       "id": 0,
       "en": "Fleeting Eternity",
       "zh": "瞬息的永恒",
-      "startSec": 0.08,
+      "startSec": 0,
       "endSec": 1.36,
       "gapAfter": 0.0,
       "audio": null,
-      "background": null
+      "background": null,
+      "style": {
+        "animation": "none",
+        "zhFontSize": 56,
+        "enFontSize": 42
+      }
     },
     {
       "id": 1,
@@ -93,7 +98,7 @@
     "copyright": "2026 © Bit Warm"
   },
   "endCredits": {
-    "duration": 2,
+    "duration": 3,
     "items": [
       {
         "label": "制作",

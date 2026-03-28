@@ -26,9 +26,9 @@ export const NarrationSchema = z.object({
 // ─── Subtitle Style ───────────────────────────────────────────────────────────
 
 export const SubtitleStyleSchema = z.object({
-  animation: z.enum(["fade", "slide"]).default("fade"),
+  animation: z.enum(["fade", "slide", "none"]).default("fade"),
   zhFontSize: z.number().default(56),
-  enFontSize: z.number().default(32),
+  enFontSize: z.number().default(42),
   color: z.string().default("#ffffff"),
 });
 

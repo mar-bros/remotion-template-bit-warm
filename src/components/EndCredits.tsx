@@ -62,9 +62,11 @@ export const EndCredits: React.FC<EndCreditsProps> = ({ config, startFrame }) =>
               key={i}
               style={{
                 display: "flex",
+                flexDirection: "column",
                 gap: 16,
                 opacity: itemOpacity,
                 transform: `translateY(${itemY}px)`,
+                marginTop: "26px",
               }}
             >
               <span
@@ -74,7 +76,7 @@ export const EndCredits: React.FC<EndCreditsProps> = ({ config, startFrame }) =>
                   fontFamily: "sans-serif",
                   fontWeight: 400,
                   minWidth: 120,
-                  textAlign: "right",
+                  textAlign: "center",
                 }}
               >
                 {item.label}
@@ -85,6 +87,7 @@ export const EndCredits: React.FC<EndCreditsProps> = ({ config, startFrame }) =>
                   color: "rgba(255,255,255,0.85)",
                   fontFamily: "sans-serif",
                   fontWeight: 500,
+                  textAlign: "center",
                 }}
               >
                 {item.value}
