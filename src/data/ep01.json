@@ -37,7 +37,10 @@
       "endSec": 1.36,
       "gapAfter": 0.0,
       "audio": null,
-      "background": null,
+      "background": {
+        "type": "image",
+        "src": "1080x1920-blanket.png"
+      },
       "style": {
         "animation": "none",
         "zhFontSize": 56,

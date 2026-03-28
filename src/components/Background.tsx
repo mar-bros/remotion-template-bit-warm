@@ -52,7 +52,6 @@ interface BackgroundProps {
 
 export const Background: React.FC<BackgroundProps> = ({ config }) => {
   const { width, height } = useVideoConfig();
-  const frame = useCurrentFrame();
 
   const overlayOpacity = config.overlay ?? 0;
 
@@ -80,8 +79,7 @@ export const Background: React.FC<BackgroundProps> = ({ config }) => {
           style={{
             width,
             height,
-            objectFit: "cover",
-            opacity: interpolate(frame, [0, 10], [0, 1], { extrapolateRight: "clamp" }),
+            objectFit: "cover"
           }}
         />
         {overlayOpacity > 0 && <div style={overlayStyle} />}
