@@ -67,7 +67,7 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
           whiteSpace: "pre-wrap"
         }}
       >
-        {zh.replace(/，/g, "\n").replace(/。/g, "")}
+        {zh.replace(/[;,，]/g, "\n").replace(/[。.]/g, "")}
       </p>
 
       {/* English line */}
@@ -86,7 +86,7 @@ export const SubtitleCard: React.FC<SubtitleCardProps> = ({ zh, en, style }) => 
           whiteSpace: "pre-wrap"
         }}
       >
-        {en.replace(/[;,]/g, "\n").replace(/\./g, "")}
+        {en.replace(/[;,，]/g, "\n").replace(/[。.]/g, "")}
       </p>
     </div>
   );
