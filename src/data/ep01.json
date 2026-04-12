@@ -13,7 +13,7 @@
   "bgMusic": [
     {
       "src": "paulyudin-sad-sad-music-485935.mp3",
-      "volume": 0.5,
+      "volume": 0.05,
       "loop": true
     }
   ],

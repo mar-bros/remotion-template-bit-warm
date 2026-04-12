@@ -44,22 +44,29 @@ export const BitWarnVideo: React.FC<BitWarnVideoProps> = (props) => {
 
       {/* ── Background music tracks ─────────────────────────────────────── */}
       {bgMusic.map((track, i) => {
-        const fadeOutFrames = Math.round(track.fadeOutDuration * fps);
-        const volume = interpolate(
-          frame,
-          [durationInFrames - fadeOutFrames, durationInFrames],
-          [track.volume, 0],
-          {
-            extrapolateLeft: "clamp",
-            extrapolateRight: "clamp",
-          }
-        );
+        const volumeTarget = track.volume ?? 0.15;
+        const fadeOutDuration = track.fadeOutDuration ?? 2;
+        const fadeOutFrames = Math.round(fadeOutDuration * fps);
+
+        // Ensure input range for interpolate is valid to avoid NaN
+        const startFrame = Math.max(0, durationInFrames - fadeOutFrames);
+        const endFrame = Math.max(startFrame + 0.001, durationInFrames);
 
         return (
           <Audio
             key={`bgmusic-${i}`}
             src={track.src.startsWith('http') ? track.src : staticFile(track.src)}
-            volume={volume}
+            volume={(f) =>
+              interpolate(
+                f,
+                [startFrame, endFrame],
+                [volumeTarget, 0],
+                {
+                  extrapolateLeft: "clamp",
+                  extrapolateRight: "clamp",
+                }
+              )
+            }
             loop={track.loop}
           />
         );

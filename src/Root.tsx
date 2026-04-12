@@ -59,8 +59,10 @@ const calculateMetadata: CalculateMetadataFunction<BitWarnVideoProps> = async ({
   };
 };
 
+const parsedDefaultProps = BitWarnConfigSchema.parse(ep01);
+
 const defaultProps: BitWarnVideoProps = {
-  ...(ep01 as unknown as BitWarnConfig),
+  ...parsedDefaultProps,
   audioDurations: {},
 };
 
